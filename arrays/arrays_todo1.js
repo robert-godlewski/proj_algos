@@ -38,14 +38,3 @@ function insertAt(arr, index, val) {
     return arr;
 }
 */
-
-//Second Solution
-/*
-function insertAt(arr, index, val) {
-    for(i=arr.length-1; i >= 0; i--) {
-        if (i===index) {}
-    }
-}
-*/
-
-//insertAt([1,3,4], 1, 2);
