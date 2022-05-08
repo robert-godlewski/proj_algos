@@ -1,14 +1,20 @@
+console.log('###############################');
+console.log('Array Todo 1');
+console.log();
+
 function pushFront(arr, val) {
     let new_arr = [val];
     for(i=0; i < arr.length; i++) {
         new_arr.push(arr[i]);
     }
-    console.log(`pushFront = ${new_arr}`);
     return new_arr;
 }
 
 //expected output [1,2,3,4]
-pushFront([2,3,4], 1);
+var arr1 = [2,3,4];
+console.log(`Original: ${arr1}`);
+console.log(`pushFront = ${pushFront(arr1, 1)}`);
+console.log()
 
 
 function popFront(arr) {
@@ -16,54 +22,15 @@ function popFront(arr) {
         arr[i] = arr[i+1];
     }
     arr.pop();
-    console.log(`popFront = ${arr}`);
     return arr;
 }
 
 //expected output [1,2]
-popFront([0,1,2]);
+var arr2 = [0,1,2];
+console.log(`Original: ${arr2}`);
+console.log(`popFront = ${popFront(arr2)}`);
+console.log();
 
-
-//My First solution that does not work
-/*
-function insertAt(arr, index, val) {
-    for(i=0; i < arr.length; i++) {
-        let temp = arr[i];
-        if (i >= index) {
-            if (i === index) {
-                arr[i] = val;
-            } else if (i > index) {
-                arr[i] = arr[arr.length-1];
-            }
-            arr.push(temp);
-        }
-    }
-    console.log(arr);
-    return arr;
-}
-
-//My second attempt for the solution - Doesn't quite work
-function insertAt(arr, index, val) {
-    let temp = [];
-    var val_added = false;
-    for(i=arr.length-1; i >= 0; i--) {
-        if (i > index && val_added === false) {
-            let tempNum = arr.pop();
-            temp.push(tempNum);
-        } else if (i === index) {
-            arr.push(val);
-            val_added = true;
-        }
-        if (val_added === true && temp) {
-            let tempNum = temp.pop()
-            arr.push(tempNum);
-            i += 2;
-        }
-    }
-    console.log(arr);
-    return arr;
-}
-*/
 
 //Third attempt for the solution
 function insertAt(arr, index, val) {
@@ -89,12 +56,14 @@ function insertAt(arr, index, val) {
             break;
         }
     }
-    console.log(`insertAt = ${arr}`);
     return arr;
 }
 
-//expected output [0,1,2,3,4]
-insertAt([0,1,3,4], 1, 2);
+// expected output [0,1,2,3,4]
+var arr3 = [0,1,3,4];
+console.log(`Original: ${arr3}`);
+console.log(`insertAt = ${insertAt(arr3, 1, 2)}`);
+console.log();
 
 
 //Look under insertAt for reasons
@@ -116,12 +85,14 @@ function removeAt(arr, index) {
             break;
         }
     }
-    console.log(`removeAt = ${arr}`);
     return arr;
 }
 
 //expected output [0,1,2]
-removeAt([0,1,3,2], 2);
+var arr4 = [0,1,3,2];
+console.log(`Original: ${arr4}`);
+console.log(`removeAt = ${removeAt(arr4, 2)}`);
+console.log();
 
 
 function swapPairs(arr) {
@@ -138,14 +109,20 @@ function swapPairs(arr) {
             arr[i+1] = temp;
         }
     }
-    console.log(`swapPairs = ${arr}`);
     return arr;
 }
 
 //expected output: [2,1,4,3]
-swapPairs([1,2,3,4]);
+var arr5 = [1,2,3,4];
+console.log(`Original: ${arr5}`);
+console.log(`swapPairs = ${swapPairs(arr5)}`);
+console.log();
+
 //expected output: [true, "Brendan", 42]
-swapPairs(["Brendan", true, 42]);
+var arr6 = ["Brendan", true, 42];
+console.log(`Original: ${arr6}`);
+console.log(`swapPairs = ${swapPairs(arr6)}`);
+console.log();
 
 
 // Only works with sorted arrays
@@ -165,9 +142,11 @@ function removeDuplicates(arr) {
         let temp = temp_list.pop();
         arr.push(temp);
     }
-    console.log(`removeDuplicates = ${arr}`);
     return arr;
 }
 
 //expected output: [1,2,3,4]
-removeDuplicates([1,1,1,2,3,3,4,4,4,4])
+var arr7 = [1,1,1,2,3,3,4,4,4,4];
+console.log(`Original: ${arr7}`);
+console.log(`removeDuplicates = ${removeDuplicates(arr7)}`);
+console.log();
