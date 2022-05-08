@@ -16,21 +16,22 @@ console.log(`Original = ${arr}`);
 console.log(`reverseArray = ${reverseArray(arr)}`);
 
 
-// Needed help on this one
-/*
+// I ended up using the reverseArray function I created earlier
 function rotateArray(arr, shiftBy) {
-    //The value we are going to move to the front of the array.
-    var val = arr[arr.length-shiftBy];
-    for (i=arr.length-1; i >= 0; i--) {
-        if ()
+    var temp;
+    for (i=0; i < shiftBy; i++) {
+        temp = arr.pop();
+        reverseArray(arr);
+        arr.push(temp);
+        reverseArray(arr);
     }
+    return arr;
 }
 
 // expected output [3,1,2]
 var arr = [1,2,3];
 console.log(`Original = ${arr}`);
 console.log(`rotateArray = ${rotateArray(arr, 1)}`);
-*/
 
 
 function filterRange(arr, min, max) {
@@ -50,7 +51,7 @@ function filterRange(arr, min, max) {
     return arr;
 }
 
-// expected output
+// expected output [4,2]
 var secret_codes_list = [0, 4, 2, 6, 8, 10, 33, -1, 20, -10];
 console.log(`Original array = ${secret_codes_list}`);
 console.log(`results withing the min and max = ${filterRange(secret_codes_list, 1, 5)}`);
