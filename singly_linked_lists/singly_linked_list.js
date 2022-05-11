@@ -48,6 +48,27 @@ class SLL {
             return this.head.data;
         }
     }
+
+    // Practice assignment for finding out if the list has the value
+    contains(value) {
+        var is_found = false;
+        // Code using previously made function
+        var compare_node = this.head;
+        while (!is_found || compare_node == null) {
+            //console.log(compare_node.data);
+            if (compare_node.data == value) {
+                // We found it and we are done
+                is_found = true;
+            } else if (!compare_node.next) {
+                // Break the loop because next is null
+                break;
+            } else {
+                // Update the node we are looking in
+                compare_node = compare_node.next;
+            }
+        }
+        return is_found;
+    }
 }
 
 // Testing the code to see if the functions for SSL and Node work
@@ -71,4 +92,16 @@ console.log(`new front data = ${ssl.front()}`);
 console.log(`reverting back to original: ${ssl.removeFront()}`);
 console.log(`ssl head data = ${ssl.front()}`);
 console.log('###############################');
-console.log();
+console.log('Contains');
+
+function containing(linked_list, value) {
+    console.log(`Does the list have ${value}?`);
+    console.log(linked_list.contains(value));
+}
+
+var val = 8;
+containing(ssl, val);
+var val = 1;
+containing(ssl, val);
+
+console.log('###############################');
