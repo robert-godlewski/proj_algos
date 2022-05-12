@@ -69,6 +69,20 @@ class SLL {
         }
         return is_found;
     }
+
+    // Practice assignment for finding the total length of the list
+    length() {
+        var count = 0;
+        var current_node = this.head;
+        if (current_node.data != null) {
+            count++;
+            while(current_node.next != null) {
+                count++;
+                current_node = current_node.next;
+            }
+        }
+        return count;
+    }
 }
 
 // Testing the code to see if the functions for SSL and Node work
@@ -105,3 +119,5 @@ var val = 1;
 containing(ssl, val);
 
 console.log('###############################');
+console.log('Length');
+console.log(`Length of the list is: ${ssl.length()}`);
