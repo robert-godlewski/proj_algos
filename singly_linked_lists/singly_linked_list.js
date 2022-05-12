@@ -74,14 +74,23 @@ class SLL {
     length() {
         var count = 0;
         var current_node = this.head;
-        if (current_node.data != null) {
+        while(current_node) {
             count++;
-            while(current_node.next != null) {
-                count++;
-                current_node = current_node.next;
-            }
+            current_node = current_node.next;
         }
         return count;
+    }
+
+    // Code for display assignment
+    display() {
+        var current_node = this.head;
+        var node_list = [];
+        while(current_node) {
+            node_list.push(current_node.data);
+            current_node = current_node.next;
+        }
+        var node_str = node_list.join();
+        return node_str;
     }
 }
 
@@ -121,3 +130,7 @@ containing(ssl, val);
 console.log('###############################');
 console.log('Length');
 console.log(`Length of the list is: ${ssl.length()}`);
+
+console.log('###############################');
+console.log('Display');
+console.log(ssl.display());
