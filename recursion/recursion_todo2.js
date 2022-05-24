@@ -35,4 +35,4 @@ function rTrib(num) {
 // expected 2
 console.log(`The rTrib(3) = ${rTrib(3)}`);
 // expected 13
-console.log(`The rTrib(6) = ${rTrib(6)}`)
+console.log(`The rTrib(6) = ${rTrib(6)}`);
