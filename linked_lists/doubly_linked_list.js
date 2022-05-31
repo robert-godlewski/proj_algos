@@ -21,41 +21,17 @@ class DLL {
     }
 
     reverse() {
-        /*
-        Pseudocode:
-        dll.head = {
-            data: 1,
-            next: {
-                data: 2,
-                next: {
-                    data: 3,
-                    next: null,
-                    previous: Node(2)
-                },
-                previous: Node(1)
-            },
-            previous: null
-        }
-
-        dll.reverse:
-        current_node = this.head
-        while (current_node != null)
-            save_node = current_node.previous
-            current_node.previous = current_node.next
-            current_node.next = save_node
-            if (current_node.previous == null)
-                this.head = current_node
-            current_node = current_node.previous
-        
-        */
         var current_node = this.head;
         while (current_node) {
+            // Saving the previous node so that we don't lose it
             var save_node = current_node.previous;
             current_node.previous = current_node.next;
             current_node.next = save_node;
+            // Reassigns the head of the list as the last node in the list
             if (!current_node.previous) {
                 this.head = current_node;
             }
+            // This is actually moving forward due to switching previous and next for each node
             current_node = current_node.previous;
         }
     }
@@ -63,14 +39,18 @@ class DLL {
     is_palindrome() {
         var data_arr = [];
         var current_node = this.head;
+        // Adding to one array to so that we can use it to make 2 strings
         while (current_node) {
             data_arr.push(current_node.data);
             current_node = current_node.next;
         }
+        // Combining a copy of the array and turning it into a string
         var start = data_arr.toString();
         var reversed = '';
+        // Moving backwards the array to make a reversed string
         for (var i = data_arr.length-1; i >= 0; i--) {
             reversed += data_arr[i];
+            // Need the ',' so that the 2 variables match
             if (i != 0) {
                 reversed += ',';
             }
@@ -84,36 +64,53 @@ class DLL {
 
     // if shiftBy > 0 the end is moved to the start
     // if shiftBy < 0 the start is moved to the end of the linked list
-    /*
     shift(shiftBy) {
-        /*
-        For shiftBy > 0
-        list: a=>b=>c -> c=>a=>b
-        1. current_node = dll.head
-        2. save_node = null - to save the node we want
-        3. go to the last node with a while loop checking if the current_node.next is not null
-        4. save_node = current_node
-        5. current_node = current_node.previous
-        6. current_node.next = null
-        7. set the dll.head.prev = save_node
-        8. save_node.next = dll.head
-        9. dll.head = save_node
-
-        For shiftBy < 0
-        list: c=>a=>b -> a=>b=>c
-        1. current_node = dll.head - same as before
-        2. save_node = dll.head
-        3. save_node.next = null
-        4. current_node = current_node.next
-        5. current_node.prev = null
-        6. dll.head = current_node
-        7. go to the last node with a while loop checking if the current_node.next is not null
-        8. current_node.next = save_node
-        9. save_node.prev = current_node
-    }*/
+        // if shiftBy == 0 we do nothing
+        if (shiftBy != 0) {
+            // Initialize variable
+            var current_node = this.head;
+            var save_node = null;
+            // save the first node to be moved left
+            if (shiftBy < 0) {
+                save_node = this.head;
+                current_node = current_node.next;
+                save_node.next = null;
+                current_node.previous = null;
+                this.head = current_node;
+            }
+            // Traverse the linked list to the end
+            while (current_node) {
+                if (current_node.next) {
+                    current_node = current_node.next;
+                } else {
+                    break;
+                }
+            }
+            // set the last node to be saved and moved to the front
+            if (shiftBy > 0) {
+                save_node = current_node;
+                current_node = current_node.previous;
+                save_node.previous = null;
+                current_node.next = null;
+                this.head.previous = save_node;
+                save_node.next = this.head;
+                this.head = save_node;
+            } else if (shiftBy < 0) {
+                current_node.next = save_node;
+                save_node.previous = current_node;
+            }
+            // Recursively repeat until shiftBy == 0
+            if (shiftBy > 0) {
+                this.shift(shiftBy-1);
+            } else if (shiftBy < 0) {
+                this.shift(shiftBy+1);
+            }
+        }
+    }
 }
 
 
+// Used to print the Linked List
 function printDLL(dll) {
     var current_node = dll.head;
     while (current_node) {
@@ -164,6 +161,20 @@ if (dll2.is_palindrome() == true) {
 } else {
     console.log('No');
 }
+console.log('Shifting:')
+var dll3 = new DLL();
+var node_a = new Node('a');
+var node_b = new Node('b');
+var node_c = new Node('c');
+node_a.next = node_b;
+node_b.previous = node_a;
+node_b.next = node_c;
+node_c.previous = node_b;
+dll3.head = node_a;
+printDLL(dll3);
 console.log('Shift Right:')
-//
+dll3.shift(1);
+printDLL(dll3);
 console.log('Shift Left:')
+dll3.shift(-1);
+printDLL(dll3);
