@@ -94,6 +94,45 @@ class SLL {
         var node_str = node_list.join();
         return node_str;
     }
+
+    // Code for Max/Min/Average assignment
+    max() {
+        var current_node = this.head;
+        var max = current_node.data;
+        while(current_node) {
+            if (current_node.data > max) {
+                max = current_node.data;
+            }
+            current_node = current_node.next;
+        }
+        return max;
+    }
+
+    // Code for Max/Min/Average assignment
+    min() {
+        var current_node = this.head;
+        var min = current_node.data;
+        while(current_node) {
+            if (current_node.data < min) {
+                min = current_node.data;
+            }
+            current_node = current_node.next;
+        }
+        return min;
+    }
+
+    // Code for Max/Min/Average assignment
+    average() {
+        var current_node = this.head;
+        var sum = 0;
+        var nodes = 0;
+        while(current_node) {
+            sum += current_node.data;
+            current_node = current_node.next;
+            nodes++;
+        }
+        return sum/nodes;
+    }
 }
 
 // Testing the code to see if the functions for SSL and Node work
@@ -136,3 +175,11 @@ console.log(`Length of the list is: ${ssl.length()}`);
 console.log('------------------');
 console.log('Display');
 console.log(ssl.display());
+
+console.log('------------------');
+var max = ssl.max();
+console.log(`Finding the Max value of the list: ${max}`);
+var min = ssl.min();
+console.log(`Finding the Min value of the list: ${min}`);
+var ave = ssl.average();
+console.log(`Finding the Average value of the list: ${ave}`);
