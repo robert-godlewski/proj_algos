@@ -2,6 +2,15 @@ console.log('###############################');
 console.log('Queues Basics');
 
 
+// Basic Node for queues that is similar to a singly linked list node.
+class Node {
+    constructor(data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
+
 // Singly linked List Queue
 class SLQueue {
     constructor() {
