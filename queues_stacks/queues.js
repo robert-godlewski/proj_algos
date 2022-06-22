@@ -2,6 +2,15 @@ console.log('###############################');
 console.log('Queues Basics');
 
 
+// Basic Node for queues that is similar to a singly linked list node.
+class Node {
+    constructor(data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
+
 // Singly linked List Queue
 class SLQueue {
     constructor() {
@@ -9,7 +18,7 @@ class SLQueue {
         this.tail = null;
     }
 
-    // Adds val to the end of the queue - need to test
+    // Adds val to the end of the queue
     enqueue(val) {
         var last = this.tail;
         var new_node = new Node(val);
@@ -29,7 +38,7 @@ class SLQueue {
         }
     }
 
-    // Returns a value in the front - need to test
+    // Returns a value in the front
     front() {
         if (this.head) {
             return this.head.data;
@@ -38,16 +47,16 @@ class SLQueue {
         }
     }
 
-    // Checks to see if the queue is empty - need to test
+    // Checks to see if the queue is empty
     isEmpty() {
         if (this.head) {
-            return true;
-        } else {
             return false;
+        } else {
+            return true;
         }
     }
 
-    // Removes the front of the queue - need to test
+    // Removes the front of the queue
     dequeue() {
         var val_node = this.head;
         var val = val_node.data;
@@ -55,7 +64,7 @@ class SLQueue {
         return val;
     }
 
-    // Checks to see if the value is in the queue or not - need to test
+    // Checks to see if the value is in the queue or not
     contains(val) {
         var current_node = this.head;
         while (current_node) {
@@ -107,3 +116,47 @@ class SLQueue {
         }
     }
 }
+
+
+// Testing grounds for queues
+var slqueue = new SLQueue();
+slqueue.head = new Node(5);
+slqueue.head.next = new Node(10);
+slqueue.tail = slqueue.head.next;
+
+function printQueue(queue) {
+    var current_node = queue.head;
+    while (current_node) {
+        console.log(current_node.data);
+        current_node = current_node.next;
+    }
+}
+
+console.log('---------------');
+console.log('Enqueue:');
+console.log('Queue prior:');
+printQueue(slqueue);
+console.log(`Adding in 15 to the queue:`);
+slqueue.enqueue(15);
+printQueue(slqueue);
+console.log('---------------');
+console.log(`Front node of the queue: ${slqueue.front()}`);
+var blankQueue = new SLQueue();
+console.log(`Front node of a blank queue: ${blankQueue.front()}`);
+console.log('---------------');
+console.log(`Is this an empty queue: slqueue = ${slqueue.isEmpty()}`);
+console.log(`Is this an empty queue: blankQueue = ${blankQueue.isEmpty()}`);
+console.log('---------------');
+console.log(`Removing ${slqueue.dequeue()} from the the queue.`);
+console.log('The queue now:');
+printQueue(slqueue);
+console.log('---------------');
+console.log(`Does the queue have 5? ${slqueue.contains(5)}`);
+console.log(`Does the queue have 15? ${slqueue.contains(15)}`);
+console.log('---------------');
+console.log(`How big is the current queue? ${slqueue.size()}`);
+console.log(`How big is an empty queue? ${blankQueue.size()}`);
+console.log('---------------');
+console.log('Removing the minimum number of the queue:');
+slqueue.removeMin();
+printQueue(slqueue);
