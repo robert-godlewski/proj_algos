@@ -7,6 +7,7 @@ class Node {
     constructor(data) {
         this.data = data;
         this.next = null;
+        this.prev = null;
     }
 }
 
@@ -22,6 +23,16 @@ var PrintLL = (ll) => {
         console.log(current_node.data);
         current_node = current_node.next;
     }
+}
+
+var ListLength = (ll) => {
+    var size = 0;
+    var current_node = ll.head;
+    while (current_node) {
+        size++;
+        current_node = current_node.next;
+    }
+    return size;
 }
 
 
@@ -77,7 +88,58 @@ console.log(`Bubble Sorted array: ${arr}`);
 
 
 console.log('---------------');
-console.log('Bubble Sorting a Linked List. - Skip');
+console.log('Bubble Sorting a Linked List.');
+/*
+var BubbleSortLL = (ll) => {
+    var current_node = ll.head;
+    console.log('Sorting:.......')
+    var swapping = true;
+    while (current_node) {//True
+        console.log(current_node.data);
+        if (current_node.next) {
+            var temp = current_node.next;
+            if (current_node.data > temp.data) {
+                console.log(`current_node (${current_node.data}) > temp (${temp.data})`);
+                temp.prev = current_node.prev;
+                current_node.prev = temp;
+                current_node.next = temp.next;
+                temp = current_node;
+                current_node = current_node.prev;
+                current_node.next = temp;
+                if (temp == ll.head) {
+                    ll.head = current_node;
+                }
+            } else {
+                console.log(`current_node (${current_node.data}) <= temp (${temp.data})`);
+                swapping = false
+            }
+            current_node = current_node.next;
+        } else if (current_node.prev) {
+            if (current_node.data < current_node.prev.data) {
+                current_node = ll.head;
+            } else {
+                break;
+            }
+        }
+    }
+}
+
+// Testing BubbleSortLL
+var ll = new LL();
+var node1 = new Node(3);
+var node2 = new Node(1);
+var node3 = new Node(2);
+node1.next = node2;
+node2.prev = node1;
+node2.next = node3;
+node3.prev = node2;
+ll.head = node1;
+console.log('Original Linked List:');
+PrintLL(ll);
+BubbleSortLL(ll);
+console.log('Bubble Sorted Linked List:')
+PrintLL(ll);
+*/
 
 console.log('---------------');
 console.log('Selection Sorting an array.');

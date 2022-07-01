@@ -66,3 +66,44 @@ var emptyarr = [];
 //console.log(`Combined array to an empty one: [${emptyarr}]`);
 CombineSortArr(arr1, emptyarr);
 console.log(`Combined array with an empty one: [${arr1}]`);
+
+
+console.log('---------------');
+// Needed for linkd lists
+class Node {
+    constructor(data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
+class LL {
+    constructor() {
+        this.head = null;
+    }
+}
+
+var PrintLL = (ll) => {
+    var current_node = ll.head;
+    while (current_node) {
+        console.log(current_node.data);
+        current_node = current_node.next;
+    }
+}
+
+console.log('Insertion Sorting a Linked List. -- Skip for now');
+var InsertionSortLL = (ll) => {}
+
+// Testing InsertionSortLL
+var ll = new LL();
+var node1 = new Node(3);
+var node2 = new Node(1);
+var node3 = new Node(2);
+node1.next = node2;
+node2.next = node3;
+ll.head = node1;
+console.log('Original Linked List:');
+PrintLL(ll);
+InsertionSortLL(ll);
+console.log('Insert Sorted Linked List:');
+PrintLL(ll);
