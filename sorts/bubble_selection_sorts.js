@@ -7,7 +7,7 @@ class Node {
     constructor(data) {
         this.data = data;
         this.next = null;
-        this.prev = null;
+        //this.prev = null;
     }
 }
 
@@ -89,37 +89,32 @@ console.log(`Bubble Sorted array: ${arr}`);
 
 console.log('---------------');
 console.log('Bubble Sorting a Linked List.');
-/*
+// My Solution of a bubble sort on a linked list using the length of the list. - backwards, not correct!
 var BubbleSortLL = (ll) => {
-    var current_node = ll.head;
-    console.log('Sorting:.......')
-    var swapping = true;
-    while (current_node) {//True
-        console.log(current_node.data);
-        if (current_node.next) {
+    var len = ListLength(ll);
+    for (var i = 0; i < len; i++) {
+        var current_node = ll.head;
+        var prev = null;
+        swapped = false;
+        for (var j = 0; j < len-i-1; j++) {
             var temp = current_node.next;
-            if (current_node.data > temp.data) {
-                console.log(`current_node (${current_node.data}) > temp (${temp.data})`);
-                temp.prev = current_node.prev;
-                current_node.prev = temp;
+            if (current_node.data > temp.next) {
                 current_node.next = temp.next;
-                temp = current_node;
-                current_node = current_node.prev;
-                current_node.next = temp;
-                if (temp == ll.head) {
-                    ll.head = current_node;
+                temp.next = current_node;
+                if (current_node == ll.head) {
+                    ll.head = temp;
                 }
-            } else {
-                console.log(`current_node (${current_node.data}) <= temp (${temp.data})`);
-                swapping = false
+                if (prev) {
+                    prev.next = temp;
+                }
+                current_node = temp;
+                swapped = true;
             }
+            prev = current_node;
             current_node = current_node.next;
-        } else if (current_node.prev) {
-            if (current_node.data < current_node.prev.data) {
-                current_node = ll.head;
-            } else {
-                break;
-            }
+        }
+        if (swapped == false) {
+            break;
         }
     }
 }
@@ -139,7 +134,7 @@ PrintLL(ll);
 BubbleSortLL(ll);
 console.log('Bubble Sorted Linked List:')
 PrintLL(ll);
-*/
+
 
 console.log('---------------');
 console.log('Selection Sorting an array.');
