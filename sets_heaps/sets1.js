@@ -60,3 +60,33 @@ var MergeSortArr = (arr1, arr2) => {
 // Testing MergeSortArr
 var arr = MergeSortArr([1,2,2,2,7], [2,2,6,6,7]);
 console.log(`Merge Sorted Array = [${arr}]`);
+
+
+console.log('---------------');
+console.log('Minimal 3 Array range.');
+// Looks at 3 arrays and determines a minimum length and a maximum length
+var ThreeArrRange = (arr1, arr2, arr3) => {
+    var min = arr1.length;
+    var max = arr1.length;
+    if (arr2.length < min) {
+        min = arr2.length;
+    }
+    if (arr3.length < min) {
+        min = arr3.length;
+    }
+    if (arr2.length > max) {
+        max = arr2.length;
+    }
+    if (arr3.length > max) {
+        max = arr3.length;
+    }
+    return {
+        "min": min,
+        "max": max
+    };
+}
+
+// Testing ThreeArrRange
+var minmax = ThreeArrRange([1,2,4,15], [3,10,12], [5,10,13,17,23]);
+console.log(`Minimum length = ${minmax["min"]}`);
+console.log(`Maximum length = ${minmax["max"]}`);
