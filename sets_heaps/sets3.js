@@ -148,7 +148,7 @@ console.log(`The Intersection of 2 arrays = [${arr}]`);
 
 
 console.log('---------------');
-console.log('Set Union Unsorted Arrays. - Wrong solution need to resolve.');
+console.log('Multiset Union Unsorted Arrays. - Wrong solution need to resolve.');
 //
 /*
 _____var____|_val
@@ -156,30 +156,48 @@ arr1        | [2,7,2,1,2]
 arr2        | [6,7,2,7,6,2]
 arr1.length | 5
 arr2.length | 6
-arr         | []
-i           | 0
-j           | 0
+arr         | [] => [7] => [7,2]
+temp        | [] => [2] -> [2,6] => [2,6,1] -> [2,6,1,7] => [2,6,1,7,2] -> [2,6,1,7,2,6]
+temp(cont.) | 
+i           | 0 => 1 => 2 => 3 => 4
+j           | 0 => 1 => 2 => 3 => 4 => 5
+check-arr1  | true => false
+check-arr2  | true
+arr1[i]     | 2 => 7 => 2 => 1 => 2
+arr2[j]     | 6 => 7 => 2 => 7 => 6 => 2
 */
-var SetUnionArr = (arr1, arr2) => {
+var MultisetUnionArr = (arr1, arr2) => {
     var arr = [];
+    var temp = [];
     var i = 0;
     var j = 0;
-    while (i < arr1.length && j < arr2.length) {
-        if (arr1[i] == arr2[j]) {
+    var is_checking_arr1 = true;
+    var is_checking_arr2 = true;
+    while (i < arr1.length && j < arr2.length) {//true
+        if (arr1[i] == arr2[j]) {//false=>true=>false=>true
             arr.push(arr1[i]);
+        } else {//true=>false=>true
+            if (is_checking_arr1) {//true
+                temp.push(arr1[i]);
+            }
+            if (is_checking_arr2) {//true
+                temp.push(arr2[j]);
+            }
+        }
+        if (i != arr1.length-1 && j+1 <= arr2.length) {//true=>false
             i++;
+        } else {
+            is_checking_arr1 = false;
+        }
+        if (j != arr2.length-1 && i+1 <= arr2.length) {//true
             j++;
-        } else if (arr1[i] < arr2[j]) {
-            arr.push(arr1[i]);
-            i++;
-        } else if (arr1[i] > arr2[j]) {
-            arr.push(arr2[j]);
-            j++;
+        } else {
+            is_checking_arr2 = false;
         }
     }
     return arr;
 }
 
 // Testing SetUnionArr
-var arr = SetUnionArr(arr1, arr2);
+var arr = MultisetUnionArr(arr1, arr2);
 console.log(`The union of 2 arrays = [${arr}]`);
