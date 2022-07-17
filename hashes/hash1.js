@@ -21,13 +21,32 @@ class HashMap {
         if (this.capacity == 0) {
             var myIdx = mod(myHashCode, this.capacity+1);
         } else {
-            var myIdx = mod(myHashCode, this.capacity+1);
+            var myIdx = mod(myHashCode, this.capacity);
         }
         //console.log(`myIdx = ${myIdx}`);
         if (this.table.length <= myIdx) {
             this.table.push(val);
             this.capacity++;
         }
+    }
+
+    isEmpty() {
+        if (this.table.length >= 1) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    find(key) {
+        var myHashCode = key.hashCode();
+        var myIdx = mod(myHashCode, this.table.length);
+        if (myIdx > this.table.length) {
+            var val = false;
+        } else {
+            var val = this.table[myIdx];
+        }
+        return val;
     }
 }
 
@@ -73,3 +92,9 @@ console.log(`hash table = [${myHash.table}]`);
 myHash.hashAdd('5', 2);
 console.log(`hash capacity = ${myHash.capacity}`);
 console.log(`hash table = [${myHash.table}]`);
+console.log('---------------');
+var emptyHash = new HashMap();
+console.log('Made a new hashmap');
+console.log(`Is the new hashmap empty? ${emptyHash.isEmpty()}`);
+console.log(`IS the old hashmap empty? ${myHash.isEmpty()}`);
+console.log('---------------');
