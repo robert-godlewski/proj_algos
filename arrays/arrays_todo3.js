@@ -69,3 +69,19 @@ function secondLargest(arr) {
 var arr = [1,2,3];
 console.log(`Original = [${arr}]`);
 console.log(`Second largest = ${secondLargest(arr)}`);
+
+
+function nToLast(arr, val) {
+    if (val > arr.length) {
+        return null;
+    } else {
+        var i = arr.length - val;
+        return arr[i];
+    }
+}
+
+// Testing nToLast
+var arr = [5,2,3,6,4,9,7];
+console.log(`Original = [${arr}]`);
+var val = 3;
+console.log(`The ${val} from the end = ${nToLast(arr, val)}`);
