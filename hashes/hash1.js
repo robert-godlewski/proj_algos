@@ -9,25 +9,28 @@ class HashMap {
         this.table = [];
     }
 
-    // only works for no duplicate indexes
+    // only works for no duplicate indexes - no longer works
     hashAdd(key, val) {
-        //console.log(`key = ${key}`);
-        //console.log(`val = ${val}`);
+        console.log(`key = ${key}`);
+        console.log(`val = ${val}`);
         //console.log(`hash capacity = ${this.capacity}`);
         //console.log(`hash table = [${this.table}]`);
-        var myHashCode = key.hashCode();
-        //console.log(`key hashcode = ${myHashCode}`);
-        //console.log(parseInt(myHashCode));
-        if (this.capacity == 0) {
+        /*var location = this.find(key);
+        console.log(location);
+        if (!location) {
+            var myHashCode = key.hashCode();
+            console.log(`key hashcode = ${myHashCode}`);
+            //console.log(parseInt(myHashCode));
             var myIdx = mod(myHashCode, this.capacity+1);
+            console.log(`myIdx = ${myIdx}`);
+            if (this.table.length <= myIdx) {
+                this.table.push(val);
+                this.capacity++;
+            }
         } else {
-            var myIdx = mod(myHashCode, this.capacity);
-        }
-        //console.log(`myIdx = ${myIdx}`);
-        if (this.table.length <= myIdx) {
-            this.table.push(val);
-            this.capacity++;
-        }
+            var data = this.table[location];
+            console.log(`Information at ${key} = [${data}]`);
+        }*/
     }
 
     isEmpty() {
@@ -40,7 +43,9 @@ class HashMap {
 
     find(key) {
         var myHashCode = key.hashCode();
+        console.log(`Find key hashcode = ${myHashCode}`);
         var myIdx = mod(myHashCode, this.table.length);
+        console.log(`the id of the hashcode = ${myIdx}`);
         if (myIdx > this.table.length) {
             var val = false;
         } else {
@@ -49,13 +54,6 @@ class HashMap {
         return val;
     }
 }
-
-/*
-function HashMap(capacity=0) {
-    this.capacity = capacity;
-    this.table = [];
-}
-*/
 
 // A way to encode the string
 //var myHashCode = myString.hashCode();
@@ -89,7 +87,14 @@ console.log('Adding to the HashMap');
 myHash.hashAdd('0', 1);
 console.log(`hash capacity = ${myHash.capacity}`);
 console.log(`hash table = [${myHash.table}]`);
+console.log('*******')
 myHash.hashAdd('5', 2);
+console.log(`hash capacity = ${myHash.capacity}`);
+console.log(`hash table = [${myHash.table}]`);
+// Repeat
+console.log('*******')
+console.log(`Readding a previous value to the Hashmap`);
+myHash.hashAdd('0', 1);
 console.log(`hash capacity = ${myHash.capacity}`);
 console.log(`hash table = [${myHash.table}]`);
 console.log('---------------');
