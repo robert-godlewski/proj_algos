@@ -9,28 +9,25 @@ class HashMap {
         this.table = [];
     }
 
-    // only works for no duplicate indexes - no longer works
+    // only works for no duplicate indexes
     hashAdd(key, val) {
-        console.log(`key = ${key}`);
-        console.log(`val = ${val}`);
+        //console.log(`key = ${key}`);
+        //console.log(`val = ${val}`);
         //console.log(`hash capacity = ${this.capacity}`);
         //console.log(`hash table = [${this.table}]`);
-        /*var location = this.find(key);
-        console.log(location);
-        if (!location) {
-            var myHashCode = key.hashCode();
-            console.log(`key hashcode = ${myHashCode}`);
-            //console.log(parseInt(myHashCode));
+        var myHashCode = key.hashCode();
+        //console.log(`key hashcode = ${myHashCode}`);
+        //console.log(parseInt(myHashCode));
+        if (this.capacity == 0) {
             var myIdx = mod(myHashCode, this.capacity+1);
-            console.log(`myIdx = ${myIdx}`);
-            if (this.table.length <= myIdx) {
-                this.table.push(val);
-                this.capacity++;
-            }
         } else {
-            var data = this.table[location];
-            console.log(`Information at ${key} = [${data}]`);
-        }*/
+            var myIdx = mod(myHashCode, this.capacity+1);
+        }
+        //console.log(`myIdx = ${myIdx}`);
+        if (this.table.length <= myIdx) {
+            this.table.push(val);
+            this.capacity++;
+        }
     }
 
     isEmpty() {
